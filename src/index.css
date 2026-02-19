@@ -1,0 +1,64 @@
+@font-face {
+  font-family: Vazirmatn-bold;
+  src: url(../public/fonts/Vazirmatn-Bold.ttf);
+}
+
+@font-face {
+  font-family: vazirmatn-medium;
+  src: url(../public/fonts/Vazirmatn-Medium.ttf);
+}
+
+@font-face {
+  font-family: vazirmatn-regular;
+  src: url(../public/fonts/Vazirmatn-Regular.ttf);
+}
+
+@font-face {
+  font-family: vazirmatn-light;
+  src: url(../public/fonts/Vazirmatn-Light.ttf);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #0F131A;
+  color: #E6E8EB;
+  font-family: vazirmatn-regular;
+  padding: 0;
+  margin: 0;
+  width: 1200px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Vazirmatn-bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+}
