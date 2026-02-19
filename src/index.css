@@ -55,6 +55,8 @@ button {
   outline: 0;
   cursor: pointer;
   font-family: inherit;
+  color: #E6E8EB;
+  background: transparent;
 }
 
 input {

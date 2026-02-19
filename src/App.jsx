@@ -1,12 +1,14 @@
 import "./App.css";
-import CardMessage from "./components/CardMessage";
 import Header from "./components/Header";
+import CardMessage from "./components/CardMessage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Header />
       <CardMessage />
+      <Footer />
     </div>
   );
 }
