@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./SendMessageForm.css";
+import { db } from "../firebase/config";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function SendMessageForm({ setIsOpen }) {
   const [textMessage, setTextMessage] = useState("");
@@ -16,10 +18,15 @@ export default function SendMessageForm({ setIsOpen }) {
 
     const message = {
       textMessage,
-      author,
+      author: "از طرف " + author,
     };
 
-    console.log(message);
+    try {
+      const ref = collection(db, "messages");
+      await addDoc(ref, message);
+    } catch (err) {
+      <p>{err}</p>;
+    }
     setIsOpen(false);
   };
 
