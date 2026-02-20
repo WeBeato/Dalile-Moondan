@@ -13,9 +13,10 @@ export default function CardMessage() {
             <p className="message__author">{message.author}</p>
           </div>
         ))}
-        <button className="card-message__btn">
-          یکی دیگه
-        </button>
+      <div className="card-message__buttons">
+        <button className="card-message__next">یکی دیگه</button>
+        <button className="card-message__save">ذخیره پیام</button>
+      </div>
     </div>
   );
 }

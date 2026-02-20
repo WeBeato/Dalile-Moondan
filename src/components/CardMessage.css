@@ -1,3 +1,72 @@
-.card-message{
+.card-message {
+    margin: 52px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 48px;
+}
+
+.message {
+    border: 1px solid #2A3140;
+    padding: 32px 28px;
+    border-radius: 18px;
+    max-width: 560px;
+    background: linear-gradient(180deg, rgba(26, 32, 44, 0.9), rgba(15, 19, 26, 0.9));
+}
+
+.message__text {
+    font-size: 20px;
+    line-height: 2.1;
     text-align: center;
+    letter-spacing: 0.2px;
+}
+
+.message__author {
+    font-size: 13px;
+    color: #9AA4B2;
+    margin-top: 24px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.message__author::before {
+    content: '- ';
+}
+
+.card-message__buttons {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.card-message__next {
+    color: #c9d1d9;
+    border: 1px solid #2A3140;
+    padding: 10px 28px;
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    transition: all 250ms ease;
+}
+
+.card-message__next:hover {
+    background-color: rgba(201, 209, 217, 0.06);
+    border-color: #3a8a87;
+}
+
+.card-message__save {
+    color: #c9d1d9;
+    border: 1px solid #2A3140;
+    padding: 10px 28px;
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    transition: all 250ms ease;
+}
+
+.card-message__save:hover {
+    background-color: rgba(201, 209, 217, 0.06);
+    border-color: #6b4eff;
+
 }
