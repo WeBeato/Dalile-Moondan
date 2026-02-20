@@ -18,6 +18,9 @@ export default function SendMessageForm({ setIsOpen }) {
       textMessage,
       author,
     };
+
+    console.log(message);
+    setIsOpen(false);
   };
 
   return (
