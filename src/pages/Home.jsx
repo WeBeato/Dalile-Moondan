@@ -4,9 +4,8 @@ import CardMessage from "../components/CardMessage";
 import Footer from "../components/Footer";
 import SendMessageForm from "../components/SendMessageForm";
 
-export default function Home() {
+export default function Home({ savedMessages, setSavedMessages }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [savedMessages, setSavedMessages] = useState([]);
 
   return (
     <div>
