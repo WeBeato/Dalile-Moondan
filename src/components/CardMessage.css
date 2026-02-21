@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 48px;
+    position: relative;
 }
 
 .message {
@@ -69,4 +70,16 @@
     background-color: rgba(201, 209, 217, 0.06);
     border-color: #6b4eff;
 
+}
+
+.notif {
+    position: absolute;
+    padding: 12px 19px ;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: #fff;
+    z-index: 100;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

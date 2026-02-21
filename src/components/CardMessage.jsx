@@ -5,6 +5,7 @@ import "./CardMessage.css";
 export default function CardMessage({ savedMessages, setSavedMessages }) {
   const { docs: messages, isLoading } = useFirestore("messages");
   const [currentMessage, setCurrentMessage] = useState(null);
+  const [isSaved, setIsSaved] = useState(false);
 
   function getRandomInit(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -42,6 +43,10 @@ export default function CardMessage({ savedMessages, setSavedMessages }) {
       return null;
 
     setSavedMessages((prev) => [...prev, currentMessage]);
+    setIsSaved(true);
+    setTimeout(() => {
+      setIsSaved(false);
+    }, 2500);
   };
 
   useEffect(() => {
@@ -50,6 +55,11 @@ export default function CardMessage({ savedMessages, setSavedMessages }) {
 
   return (
     <div className="card-message">
+      {isSaved && (
+        <div className="notif">
+          <p>پیام سیو شد</p>
+        </div>
+      )}
       {isLoading && <p>درحال دریافت پیام...</p>}
       {currentMessage && (
         <div className="message" key={currentMessage.id}>
