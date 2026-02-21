@@ -4,8 +4,10 @@ import { db } from "../firebase/config";
 
 export const useFirestore = (collectionName) => {
   const [docs, setDocs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const q = query(collection(db, collectionName));
     const unsub = onSnapshot(q, (snapshot) => {
       let documents = [];
@@ -13,9 +15,10 @@ export const useFirestore = (collectionName) => {
         documents.push({ ...doc.data(), id: doc.id });
       });
       setDocs(documents);
+      setIsLoading(false);
     });
     return () => unsub();
   }, [collectionName]);
 
-  return { docs };
+  return { docs, isLoading };
 };

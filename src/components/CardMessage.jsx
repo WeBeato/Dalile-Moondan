@@ -3,7 +3,7 @@ import { useFirestore } from "../hooks/useFirestore";
 import "./CardMessage.css";
 
 export default function CardMessage({ savedMessages, setSavedMessages }) {
-  const { docs: messages } = useFirestore("messages");
+  const { docs: messages, isLoading } = useFirestore("messages");
   const [currentMessage, setCurrentMessage] = useState(null);
 
   function getRandomInit(min, max) {
@@ -50,6 +50,7 @@ export default function CardMessage({ savedMessages, setSavedMessages }) {
 
   return (
     <div className="card-message">
+      {isLoading && <p>درحال دریافت پیام...</p>}
       {currentMessage && (
         <div className="message" key={currentMessage.id}>
           <p className="message__text">{currentMessage.textMessage}</p>
