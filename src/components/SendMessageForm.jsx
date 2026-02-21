@@ -24,10 +24,10 @@ export default function SendMessageForm({ setIsOpen }) {
     try {
       const ref = collection(db, "messages");
       await addDoc(ref, message);
+      setIsOpen(false);
     } catch (err) {
       <p>{err}</p>;
     }
-    setIsOpen(false);
   };
 
   return (

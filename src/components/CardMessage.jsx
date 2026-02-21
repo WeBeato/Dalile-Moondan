@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
 import "./CardMessage.css";
 
-export default function CardMessage() {
+export default function CardMessage({ savedMessages, setSavedMessages }) {
   const { docs: messages } = useFirestore("messages");
   const [currentMessage, setCurrentMessage] = useState(null);
 
@@ -37,6 +37,17 @@ export default function CardMessage() {
     setCurrentMessage(getRandomMessage());
   };
 
+  const handelSave = () => {
+    if (savedMessages.some((message) => message.id === currentMessage.id))
+      return null;
+
+    setSavedMessages((prev) => [...prev, currentMessage]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("savedMessages", JSON.stringify(savedMessages));
+  }, [savedMessages]);
+
   return (
     <div className="card-message">
       {currentMessage && (
@@ -49,7 +60,9 @@ export default function CardMessage() {
         <button className="card-message__next" onClick={handleNext}>
           یکی دیگه
         </button>
-        <button className="card-message__save">ذخیره پیام</button>
+        <button className="card-message__save" onClick={handelSave}>
+          ذخیره پیام
+        </button>
       </div>
     </div>
   );
