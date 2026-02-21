@@ -5,9 +5,11 @@ export default function Header() {
   return (
     <div className="header">
       <Link to="/">
-        <img src="../../public/images/logo.png" alt="لوگو" className="logo" />
+        <img src="../../public/images/logo.png" alt="لوگو" className="header__logo" />
       </Link>
-      <Link to="/saved-messages">پیام های ذخیره شده</Link>
+      <Link to="/saved-messages" className="header__btn">
+        پیام‌های ذخیره شده
+      </Link>
     </div>
   );
 }
