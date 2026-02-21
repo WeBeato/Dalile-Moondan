@@ -1,23 +1,17 @@
 import "./App.css";
-import Header from "./components/Header";
-import CardMessage from "./components/CardMessage";
-import Footer from "./components/Footer";
-import { useState } from "react";
-import SendMessageForm from "./components/SendMessageForm";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Home from "./pages/Home";
+import SavedMessages from "./pages/SavedMessages";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [savedMessages, setSavedMessages] = useState([]);
-
   return (
     <div className="app">
-      <Header />
-      <CardMessage
-        savedMessages={savedMessages}
-        setSavedMessages={setSavedMessages}
-      />
-      <Footer setIsOpen={setIsOpen} />
-      {isOpen && <SendMessageForm isOpen={isOpen} setIsOpen={setIsOpen} />}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/saved-messages" element={<SavedMessages />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
