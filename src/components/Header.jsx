@@ -1,5 +1,5 @@
 import "./Header.css";
-import headerLogo from "../../public/imageslogo.png";
+import headerLogo from "../../public/images/logo.png";
 import { Link } from "react-router";
 
 export default function Header() {
