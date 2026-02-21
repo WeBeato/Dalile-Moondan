@@ -33,19 +33,23 @@ export default function SavedMessages({ savedMessages, setSavedMessages }) {
       </Link>
 
       <div className="saved-messages__wrap">
-        {savedMessages.map((message) => (
-          <div className="message__card">
-            <p className="message__text">
-              {message.textMessage.substring(0, 100) + "..."}
-            </p>
-            <p className="message__author">{message.author}</p>
-            <img
-              src={deleteIcon}
-              className="delete"
-              onClick={() => askDelete(message.id)}
-            />
-          </div>
-        ))}
+        {savedMessages.length < 1 ? (
+          <p>هنوز پیامی رو ذخیره نکردی</p>
+        ) : (
+          savedMessages.map((message) => (
+            <div className="message__card">
+              <p className="message__text">
+                {message.textMessage.substring(0, 100) + "..."}
+              </p>
+              <p className="message__author">{message.author}</p>
+              <img
+                src={deleteIcon}
+                className="delete"
+                onClick={() => askDelete(message.id)}
+              />
+            </div>
+          ))
+        )}
       </div>
 
       {confirmId && (
