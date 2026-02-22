@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
 import "./CardMessage.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function CardMessage({ savedMessages, setSavedMessages }) {
   const { docs: messages, isLoading } = useFirestore("messages");
@@ -54,19 +55,32 @@ export default function CardMessage({ savedMessages, setSavedMessages }) {
   }, [savedMessages]);
 
   return (
-    <div className="card-message">
+    <motion.div className="card-message" layout="size">
       {isSaved && (
-        <div className="notif">
+        <motion.div
+          className="notif"
+          initial={{ opacity: 0, x: "20px" }}
+          animate={{ opacity: 1, x: "-20px" }}
+        >
           <p>پیام سیو شد</p>
-        </div>
+        </motion.div>
       )}
       {isLoading && <p>درحال دریافت پیام...</p>}
-      {currentMessage && (
-        <div className="message" key={currentMessage.id}>
-          <p className="message__text">{currentMessage.textMessage}</p>
-          <p className="message__author">{currentMessage.author}</p>
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {currentMessage && (
+          <motion.div
+            className="message"
+            key={currentMessage.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{ willChange: "opacity" }}
+          >
+            <p className="message__text">{currentMessage.textMessage}</p>
+            <p className="message__author">{currentMessage.author}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="card-message__buttons">
         <button className="card-message__next" onClick={handleNext}>
           یکی دیگه
@@ -75,6 +89,6 @@ export default function CardMessage({ savedMessages, setSavedMessages }) {
           ذخیره پیام
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

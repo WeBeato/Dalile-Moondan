@@ -2,6 +2,7 @@ import "./SavedMessages.css";
 import deleteIcon from "../../public/images/delete-icon.svg";
 import { useState } from "react";
 import { Link } from "react-router";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function SavedMessages({ savedMessages, setSavedMessages }) {
   const [confirmId, setConfirmId] = useState(null);
@@ -20,12 +21,16 @@ export default function SavedMessages({ savedMessages, setSavedMessages }) {
   };
 
   return (
-    <div className="saved-messages">
+    <motion.div
+      className="saved-messages"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <Link to="/" className="saved-messages__btn">
         صفحه اصلی
       </Link>
 
-      <div className="saved-messages__wrap">
+      <motion.div className="saved-messages__wrap" layout="position">
         {savedMessages.length < 1 ? (
           <p>هنوز پیامی رو ذخیره نکردی</p>
         ) : (
@@ -43,27 +48,34 @@ export default function SavedMessages({ savedMessages, setSavedMessages }) {
             </div>
           ))
         )}
-      </div>
+      </motion.div>
 
-      {confirmId && (
-        <div className="confirm-backdrop">
-          <div className="confirm-modal">
-            <p>این پیام حذف شود؟</p>
-            <button
-              className="confirm-delete-btn"
-              onClick={() => handleDelete(confirmId)}
-            >
-              حذف
-            </button>
-            <button
-              className="confirm-cancel-btn"
-              onClick={() => setConfirmId(null)}
-            >
-              انصراف
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+      <AnimatePresence>
+        {confirmId && (
+          <motion.div
+            className="confirm-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="confirm-modal">
+              <p>این پیام حذف شود؟</p>
+              <button
+                className="confirm-delete-btn"
+                onClick={() => handleDelete(confirmId)}
+              >
+                حذف
+              </button>
+              <button
+                className="confirm-cancel-btn"
+                onClick={() => setConfirmId(null)}
+              >
+                انصراف
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }

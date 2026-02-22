@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./SendMessageForm.css";
 import { db } from "../firebase/config";
 import { addDoc, collection } from "firebase/firestore";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function SendMessageForm({ setIsOpen }) {
   const [textMessage, setTextMessage] = useState("");
@@ -34,28 +35,36 @@ export default function SendMessageForm({ setIsOpen }) {
   };
 
   return (
-    <div className="backdrop" onClick={handleClick}>
-      <form className="form" onSubmit={handleSubmit}>
-        <h3>یه پیام برای کسی که حالش خوب نیست</h3>
-        <textarea
-          placeholder="هرچیزی که دوست داشتی یکی بهت بگه..."
-          onChange={(e) => setTextMessage(e.target.value)}
-          value={textMessage}
-          required
-        ></textarea>
+    <AnimatePresence>
+      <motion.div
+        className="backdrop"
+        onClick={handleClick}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <form className="form" onSubmit={handleSubmit}>
+          <h3>یه پیام برای کسی که حالش خوب نیست</h3>
+          <textarea
+            placeholder="هرچیزی که دوست داشتی یکی بهت بگه..."
+            onChange={(e) => setTextMessage(e.target.value)}
+            value={textMessage}
+            required
+          ></textarea>
 
-        <label className="form__label">
-          <span>اسم شما (اختیاری):</span>
-          <input
-            type="text"
-            onChange={(e) => setAuthor(e.target.value)}
-            value={author}
-          />
-        </label>
-        <p>* پیام ها قبل از نمایش بررسی می‌شوند. *</p>
+          <label className="form__label">
+            <span>اسم شما (اختیاری):</span>
+            <input
+              type="text"
+              onChange={(e) => setAuthor(e.target.value)}
+              value={author}
+            />
+          </label>
+          <p>* پیام ها قبل از نمایش بررسی می‌شوند. *</p>
 
-        <button>{isLoading ? "درحال ارسال" : "ارسال پیام"}</button>
-      </form>
-    </div>
+          <button>{isLoading ? "درحال ارسال" : "ارسال پیام"}</button>
+        </form>
+      </motion.div>
+    </AnimatePresence>
   );
 }
