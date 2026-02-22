@@ -5,7 +5,10 @@ import SavedMessages from "./pages/SavedMessages";
 import { useState } from "react";
 
 function App() {
-  const [savedMessages, setSavedMessages] = useState([]);
+  const [savedMessages, setSavedMessages] = useState(() => {
+    const stored = localStorage.getItem("savedMessages");
+    return stored ? JSON.parse(stored) : [];
+  });
 
   return (
     <div className="app">

@@ -1,17 +1,10 @@
 import "./SavedMessages.css";
 import deleteIcon from "../../public/images/delete-icon.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 
 export default function SavedMessages({ savedMessages, setSavedMessages }) {
   const [confirmId, setConfirmId] = useState(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("savedMessages");
-    if (stored) {
-      setSavedMessages(JSON.parse(stored));
-    }
-  }, []);
 
   const askDelete = (id) => {
     setConfirmId(id);
