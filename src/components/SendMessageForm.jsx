@@ -6,6 +6,7 @@ import { addDoc, collection } from "firebase/firestore";
 export default function SendMessageForm({ setIsOpen }) {
   const [textMessage, setTextMessage] = useState("");
   const [author, setAuthor] = useState("یک دوست");
+  const [isLoading, setIsloading] = useState(false);
 
   const handleClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
@@ -22,8 +23,10 @@ export default function SendMessageForm({ setIsOpen }) {
     };
 
     try {
+      setIsloading(true);
       const ref = collection(db, "messages");
       await addDoc(ref, message);
+      setIsloading(false);
       setIsOpen(false);
     } catch (err) {
       <p>{err}</p>;
@@ -51,7 +54,7 @@ export default function SendMessageForm({ setIsOpen }) {
         </label>
         <p>* پیام ها قبل از نمایش بررسی می‌شوند. *</p>
 
-        <button>ارسال پیام</button>
+        <button>{isLoading ? "درحال ارسال" : "ارسال پیام"}</button>
       </form>
     </div>
   );
