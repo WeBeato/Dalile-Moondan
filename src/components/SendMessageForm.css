@@ -47,13 +47,15 @@
     background: #0C1016;
     outline: none;
 }
-.form__label span{
+
+.form__label span {
     color: #9AA4B2;
     font-size: 14px;
     margin-bottom: 8px;
     display: block;
 }
-.form__label input{
+
+.form__label input {
     background: #0F131A;
     border: 1px solid #2A3140;
     color: #E6E8EB;
@@ -67,9 +69,9 @@
     font-size: 12px;
     color: #9AA4B2;
     margin-top: 24px;
-} 
+}
 
-.form button{
+.form button {
     background: #4C6FFF;
     color: #FFF;
     border-radius: 16px;
@@ -79,6 +81,13 @@
     margin-top: 24px;
 
 }
-.form button:hover{
+
+.form button:hover {
     background: #5A7CFF;
+}
+
+.send {
+    background: linear-gradient(#4C6FFF, #5A7CFF);
+    padding: 12px 24px;
+    border-radius: 16px;
 }

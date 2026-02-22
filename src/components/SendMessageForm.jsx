@@ -8,6 +8,7 @@ export default function SendMessageForm({ setIsOpen }) {
   const [textMessage, setTextMessage] = useState("");
   const [author, setAuthor] = useState("یک دوست");
   const [isLoading, setIsloading] = useState(false);
+  const [isSend, setIsSend] = useState(false);
 
   const handleClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
@@ -25,12 +26,16 @@ export default function SendMessageForm({ setIsOpen }) {
 
     try {
       setIsloading(true);
-      const ref = collection(db, "messages");
+      const ref = collection(db, "pendingMessages");
       await addDoc(ref, message);
       setIsloading(false);
-      setIsOpen(false);
+      setIsSend(true);
+      setTimeout(() => {
+        setIsSend(false);
+        setIsOpen(false);
+      }, 1500);
     } catch (err) {
-      <p>{err}</p>;
+      console.log(err);
     }
   };
 
@@ -43,27 +48,34 @@ export default function SendMessageForm({ setIsOpen }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <form className="form" onSubmit={handleSubmit}>
-          <h3>یه پیام برای کسی که حالش خوب نیست</h3>
-          <textarea
-            placeholder="هرچیزی که دوست داشتی یکی بهت بگه..."
-            onChange={(e) => setTextMessage(e.target.value)}
-            value={textMessage}
-            required
-          ></textarea>
+        {!isSend && (
+          <form className="form" onSubmit={handleSubmit}>
+            <h3>یه پیام برای کسی که حالش خوب نیست</h3>
+            <textarea
+              placeholder="هرچیزی که دوست داشتی یکی بهت بگه..."
+              onChange={(e) => setTextMessage(e.target.value)}
+              value={textMessage}
+              required
+            ></textarea>
 
-          <label className="form__label">
-            <span>اسم شما (اختیاری):</span>
-            <input
-              type="text"
-              onChange={(e) => setAuthor(e.target.value)}
-              value={author}
-            />
-          </label>
-          <p>* پیام ها قبل از نمایش بررسی می‌شوند. *</p>
+            <label className="form__label">
+              <span>اسم شما (اختیاری):</span>
+              <input
+                type="text"
+                onChange={(e) => setAuthor(e.target.value)}
+                value={author}
+              />
+            </label>
+            <p>* پیام ها قبل از نمایش بررسی می‌شوند. *</p>
 
-          <button>{isLoading ? "درحال ارسال" : "ارسال پیام"}</button>
-        </form>
+            <button>{isLoading ? "درحال ارسال" : "ارسال پیام"}</button>
+          </form>
+        )}
+        {isSend && (
+          <div className="send">
+            <p>♡ پیامت ثبت و بعد بررسی نشون داده میشه.</p>
+          </div>
+        )}
       </motion.div>
     </AnimatePresence>
   );
