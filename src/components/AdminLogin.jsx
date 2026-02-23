@@ -1,13 +1,13 @@
 import "./AdminLogin.css";
 import { useState } from "react";
 import { useFirestore } from "../hooks/useFirestore";
+import { motion } from "framer-motion";
 
 export default function AdminLogin({ setIsAdmin }) {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const { docs: admin } = useFirestore("admin");
-
 
   const handleLogin = () => {
     if (user === admin[0].user && pass === admin[0].pass) {
@@ -19,7 +19,11 @@ export default function AdminLogin({ setIsAdmin }) {
   };
 
   return (
-    <div className="admin-login">
+    <motion.div
+      className="admin-login"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <form className="admin-login__form" onSubmit={handleLogin}>
         <h3 className="admin-login__title">ورود ادمین</h3>
 
@@ -49,6 +53,6 @@ export default function AdminLogin({ setIsAdmin }) {
 
         <p className="error">{error}</p>
       </form>
-    </div>
+    </motion.div>
   );
 }

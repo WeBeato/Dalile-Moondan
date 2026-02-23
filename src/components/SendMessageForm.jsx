@@ -33,7 +33,7 @@ export default function SendMessageForm({ setIsOpen }) {
       setTimeout(() => {
         setIsSend(false);
         setIsOpen(false);
-      }, 1500);
+      }, 2000);
     } catch (err) {
       console.log(err);
     }
