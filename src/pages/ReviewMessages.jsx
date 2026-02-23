@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import AdminLogin from "../components/AdminLogin";
 import PendingMessages from "../components/PendingMessages";
+import Header from "../components/Header";
 
 export default function ReviewMessages({ isAdmin, setIsAdmin }) {
   useEffect(() => {
@@ -12,6 +13,7 @@ export default function ReviewMessages({ isAdmin, setIsAdmin }) {
 
   return (
     <div className="review-messages">
+      <Header />
       {!isAdmin && <AdminLogin setIsAdmin={setIsAdmin} />}
       {isAdmin && <PendingMessages />}
     </div>
