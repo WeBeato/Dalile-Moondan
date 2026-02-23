@@ -7,33 +7,44 @@ import { useState } from "react";
 
 export default function PendingMessages() {
   const { docs: pendingMessages, isLoading } = useFirestore("pendingMessages");
-  const [Loading, setloading] = useState(false);
+  const [loadingAction, setLoadingAction] = useState(null);
 
   const handleAction = async (action) => {
     if (action === "approve") {
       try {
-        setloading(true);
+        setLoadingAction(action);
 
         // add pending message to messages collection
         const messagesRef = collection(db, "messages");
         await addDoc(messagesRef, pendingMessages[0]);
 
         // delete pending message from pendingMessages collection
-        const pendingMessagesRef = doc(db, "pendingMessages", pendingMessages[0].id);
+        const pendingMessagesRef = doc(
+          db,
+          "pendingMessages",
+          pendingMessages[0].id,
+        );
         await deleteDoc(pendingMessagesRef);
-
-        setloading(false);
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoadingAction(null);
       }
     }
     if (action === "reject") {
+      setLoadingAction(action);
       try {
         // delete pending message from pendingMessages collection
-        const pendingMessagesRef = doc(db, "pendingMessages", pendingMessages[0].id);
+        const pendingMessagesRef = doc(
+          db,
+          "pendingMessages",
+          pendingMessages[0].id,
+        );
         await deleteDoc(pendingMessagesRef);
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoadingAction(null);
       }
     }
   };
@@ -45,10 +56,7 @@ export default function PendingMessages() {
       animate={{ opacity: 1 }}
     >
       {isLoading && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           درحال دریافت پیام...
         </motion.p>
       )}
@@ -63,17 +71,11 @@ export default function PendingMessages() {
       )}
 
       <div className="buttons-wrapper">
-        <button
-          className="approve-btn"
-          onClick={() => handleAction("approve")}
-        >
-          {Loading ? "درحال تایید..." : "تایید"}
+        <button className="approve-btn" onClick={() => handleAction("approve")}>
+          {loadingAction === "approve" ? "درحال تایید..." : "تایید"}
         </button>
-        <button
-          className="reject-btn"
-          onClick={() => handleAction("reject")}
-        >
-          رد
+        <button className="reject-btn" onClick={() => handleAction("reject")}>
+          {loadingAction === "reject" ? "درحال رد..." : "رد"}
         </button>
       </div>
     </motion.div>
