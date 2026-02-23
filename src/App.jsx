@@ -10,6 +10,10 @@ function App() {
     const stored = localStorage.getItem("savedMessages");
     return stored ? JSON.parse(stored) : [];
   });
+  const [isAdmin, setIsAdmin] = useState(() => {
+    const stored = localStorage.getItem("isAdmin");
+    return stored ? JSON.parse(stored) : false;
+  });
 
   return (
     <div className="app">
@@ -21,6 +25,7 @@ function App() {
               <Home
                 savedMessages={savedMessages}
                 setSavedMessages={setSavedMessages}
+                isAdmin={isAdmin}
               />
             }
           />
@@ -35,7 +40,9 @@ function App() {
           />
           <Route
             path="/webeato-admin/review-pending-messages"
-            element={<ReviewMessages />}
+            element={
+              <ReviewMessages isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+            }
           />
         </Routes>
       </HashRouter>

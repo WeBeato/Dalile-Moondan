@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AdminLogin from "../components/AdminLogin";
 import PendingMessages from "../components/PendingMessages";
-import { motion } from "framer-motion";
 
-export default function ReviewMessages() {
-  const [isAdmin, setIsAdmin] = useState(false);
-
+export default function ReviewMessages({ isAdmin, setIsAdmin }) {
   useEffect(() => {
     const admin = localStorage.getItem("isAdmin");
     if (admin === "true") {

@@ -5,12 +5,12 @@ import Footer from "../components/Footer";
 import SendMessageForm from "../components/SendMessageForm";
 import { motion } from "framer-motion";
 
-export default function Home({ savedMessages, setSavedMessages }) {
+export default function Home({ savedMessages, setSavedMessages,isAdmin }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <Header />
+      <Header isAdmin={isAdmin}/>
 
       <CardMessage
         savedMessages={savedMessages}
