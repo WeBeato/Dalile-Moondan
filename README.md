@@ -1,16 +1,87 @@
-# React + Vite
+# Dalile Moondan 💙
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dalile Moondan is a message-sharing platform where people can send kind, supportive, and compassionate messages for those who need encouragement.  
+All messages are reviewed by an admin before being published publicly.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌱 Project Purpose
 
-## React Compiler
+The goal of **Dalile Moondan** is to create a safe and positive space where:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- People can write **kind and uplifting messages**
+- Messages reach individuals who need emotional support
+- All content is **reviewed and moderated** before being published
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧠 How It Works
+
+1. A user submits a message
+2. The message is stored as a **pending message**
+3. An admin reviews messages **one at a time**
+4. The admin can:
+   - ✅ **Approve** → message is published
+   - ❌ **Reject** → message is deleted
+5. After each action, the next pending message is shown automatically
+
+---
+
+## 🔐 Message Moderation System
+
+- New messages are saved in the `pendingMessages` collection
+- Approved messages are moved to the main `messages` collection
+- Rejected messages are permanently removed
+- Only one message is displayed at a time for focused moderation
+
+---
+
+## ⭐️ Saved Messages Feature
+
+Users can **save messages** they find meaningful or helpful.
+
+### How saved messages work:
+
+- Saved messages are stored in the browser using **LocalStorage**
+- Each saved message remains available even after:
+  - Page reload
+  - Browser restart
+- Users can:
+  - View all saved messages on a dedicated page
+  - Remove saved messages individually
+  - Confirm deletion before removing a saved message
+
+This feature allows users to keep personal collections of messages that inspire or comfort them.
+
+---
+
+## 🛠 Tech Stack
+
+- **React**
+- **Firebase Firestore**
+- **Framer Motion** (animations)
+- **LocalStorage** (saved messages & admin session)
+- **CSS** (custom styling)
+
+---
+
+## 🎯 Key Features
+
+- Message submission form
+- Admin moderation panel
+- Approve / Reject workflow
+- One-message-at-a-time review system
+- Saved messages with persistence
+- Confirmation modal for deletions
+- Smooth UI animations
+
+---
+
+## 🤍 Philosophy
+
+A single kind message can be a reason to keep going.  
+**Dalile Moondan** exists to deliver those messages safely, thoughtfully, and with care.
+
+---
+
+## [Test Online](https://webeato.github.io/Dalile-Moondan/)
