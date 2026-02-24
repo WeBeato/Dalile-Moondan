@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 16px;
     padding: 16px;
 }
 
@@ -25,4 +25,33 @@
     background: rgba(76, 111, 255, 0.08);
     border: 1px solid #4c6fff;
     color: #4c6fff;
+}
+
+/* Responsive */
+@media (max-width:576px) {
+    .footer {
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .footer__text {
+        font-size: 18px;
+    }
+
+    .footer__btn {
+        font-size: 14px;
+        padding: 8px 16px;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width:400px) {
+    .footer__text {
+        font-size: 16px;
+        max-width: 200px;
+    }
+
+    .footer__btn {
+        font-size: 12px;
+    }
 }
