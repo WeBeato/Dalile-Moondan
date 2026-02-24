@@ -14,12 +14,12 @@
     border-radius: 18px;
     max-width: 560px;
     background: linear-gradient(180deg, rgba(26, 32, 44, 0.9), rgba(15, 19, 26, 0.9));
+    text-align: justify;
 }
 
 .message__text {
     font-size: 20px;
     line-height: 2.1;
-    text-align: center;
     letter-spacing: 0.2px;
 }
 
@@ -27,7 +27,6 @@
     font-size: 13px;
     color: #9AA4B2;
     margin-top: 24px;
-    text-align: center;
     opacity: 0.9;
 }
 
@@ -73,7 +72,7 @@
 }
 
 .notif {
-    position: absolute;
+    position: fixed;
     padding: 12px 19px;
     top: 20px;
     right: 20px;
@@ -82,4 +81,30 @@
     z-index: 100;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width:992px) {}
+
+@media (max-width:768px) {
+    .card-message {
+        padding: 0 32px;
+    }
+}
+
+@media (max-width:576px) {
+    .card-message {
+        padding: 0 16px;
+    }
+}
+
+@media (max-width:400px) {
+    .card-message {
+        gap: 32px;
+        margin: 32px 0;
+    }
+
+    .message {
+        padding: 24px;
+    }
 }
