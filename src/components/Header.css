@@ -9,6 +9,7 @@
 .header__logo {
     height: 96px;
     width: 144px;
+    transform: translateY(5px);
 }
 
 .header__btn {
@@ -21,7 +22,51 @@
     transition: all 250ms ease;
     opacity: 0.85;
 }
-.header__btn:hover{
+
+.header__btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 14px 36px rgba(76, 111, 255, 0.45);
+}
+
+/* Responsive */
+@media (max-width:992px) {}
+
+@media (max-width:768px) {
+    .header__logo {
+        height: 88px;
+        width: 133px;
+    }
+
+    .header__btn {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width:576px) {
+
+    .header {
+        padding: 0 16px;
+    }
+
+    .header__logo {
+        height: 72px;
+        width: 112px;
+    }
+
+    .header__btn {
+        font-size: 12px;
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width:400px) {
+    .header {
+        padding: 0 8px;
+    }
+
+    .header__logo {
+        height: 64px;
+        width: 96px;
+    }
 }
