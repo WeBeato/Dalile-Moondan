@@ -96,3 +96,41 @@
     border-color: #175cd3;
     color: #175cd3;
 }
+
+/* Responsive */
+@media (max-width:992px) {
+    .saved-messages__wrap {
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+
+    .message__card {
+        width: 320px;
+    }
+}
+
+@media (max-width:768px) {
+    .saved-messages__wrap{
+        align-items: stretch;
+    }
+    .message__card {
+        width: 300px;
+    }
+}
+
+@media (max-width:576px) {
+    .saved-messages{
+        padding: 16px;
+    }
+}
+
+@media (max-width:400px) {
+    .saved-messages__wrap{
+        margin-top: 24px;
+        padding-top: 16px;
+    }
+    .saved-messages__btn{
+        font-size: 14px;
+    }
+}
